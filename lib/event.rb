@@ -1,4 +1,7 @@
 class Event < ActiveRecord::Base
+
+  has_many :notes, :as => :noteable
+
   def self.list_by_date
     Event.where(:start_date => Time.now..'2400/01/01 12:00:00').sort_by_date
   end
