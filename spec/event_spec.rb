@@ -32,6 +32,13 @@ describe Event do
       expect(Event.view_month).to eq [test_event3, test_event]
     end
 
+    it 'should view all of the events for the given month' do
+      test_event = Event.create(:name => 'birthday', :location => 'home', :start_date => '2014/08/20', :end_date => '2015/09/06 12:00:00')
+      test_event2 = Event.create(:name => 'birthday', :location => 'home', :start_date => '2014/02/02', :end_date => '2014/09/06 12:00:00')
+      test_event3 = Event.create(:name => 'birthday', :location => 'home', :start_date => '2014/08/14', :end_date => '2015/09/04 12:00:00')
+      expect(Event.view_month({:year => 2014, :month => 2})).to eq [test_event2]
+    end
+
   end
 
   describe 'view_year' do
@@ -40,6 +47,13 @@ describe Event do
       test_event2 = Event.create(:name => 'birthday', :location => 'home', :start_date => '2014/02/02', :end_date => '2014/09/06 12:00:00')
       test_event3 = Event.create(:name => 'birthday', :location => 'home', :start_date => '2014/08/14', :end_date => '2015/09/04 12:00:00')
       expect(Event.view_year).to eq [test_event2, test_event3]
+    end
+
+    it 'should view all of the events for a given year' do
+      test_event = Event.create(:name => 'birthday', :location => 'home', :start_date => '2015/09/05', :end_date => '2015/09/06 12:00:00')
+      test_event2 = Event.create(:name => 'birthday', :location => 'home', :start_date => '2013/02/02', :end_date => '2014/09/06 12:00:00')
+      test_event3 = Event.create(:name => 'birthday', :location => 'home', :start_date => '2013/08/14', :end_date => '2015/09/04 12:00:00')
+      expect(Event.view_year({:year => 2013})).to eq [test_event2, test_event3]
     end
   end
 end
