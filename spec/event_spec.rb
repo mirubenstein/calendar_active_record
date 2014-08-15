@@ -5,6 +5,7 @@ describe Event do
   it { should have_db_column :location }
   it { should have_db_column :start_date }
   it { should have_db_column :end_date }
+  it { should have_many :notes }
 
   describe 'list_by_date' do
     it 'should list all events by date' do
