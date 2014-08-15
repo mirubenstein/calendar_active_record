@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
 
-  validates_date :start_date, :on_or_before => lambda { Date.new(1900,01,01) }
+  validates_date :start_date, :on_or_after => lambda { Date.new(1900,01,01) }
 
   has_many :notes, :as => :noteable
 
